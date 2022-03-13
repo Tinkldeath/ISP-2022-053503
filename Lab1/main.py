@@ -1,5 +1,7 @@
 import nltk.data
 import re
+import os
+import sys
 
 
 def generate_ngram_dict(n: int, text: str):
@@ -50,7 +52,11 @@ def clear_sentence_symbols(sentence: str):
 
 
 def text_to_array(text: str):
-    nltk.download('punkt')
+    try:
+        nltk.data.find('tokenizers/punkt')
+    except LookupError:
+        nltk.download('punkt')
+
     tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
     words = []
     array = tokenizer.tokenize(text)
@@ -94,9 +100,22 @@ def find_top_k(dictionary: dict, k: int):
             kk += 1
 
 
+def is_empty(path: str) -> bool:
+    return True if os.path.getsize(path) == 0 else False
+
+
+def read_file(path: str) -> str:
+    if is_empty(path):
+        print("File is empty.")
+        sys.exit()
+    else:
+        with open(path) as open_file:
+            s = open_file.read()
+    return s
+
+
 def main():
-    fp = open('input.txt')
-    data = fp.read()
+    data = read_file('input.txt')
     nk = input_values()
     words = text_to_array(data)
     spacing("Words count")
