@@ -19,7 +19,7 @@ def generate_ngram_dict(n: int, text: str):
 def spacing(message: str):
     print("")
     s = ""
-    for _ in range(0,50):
+    for _ in range(0, 50):
         s += "="
     print(s)
     print(message)
@@ -88,7 +88,8 @@ def find_top_k(dictionary: dict, k: int):
         reversed_dictionary = dict(reversed(list(sorted_dictionary.items())))
         kk = 0
         for key, value in reversed_dictionary.items():
-            if kk >= k: break
+            if kk >= k:
+                break
             print(f"{key} appears {value} time(s)")
             kk += 1
 
@@ -98,11 +99,11 @@ def main():
     data = fp.read()
     nk = input_values()
     words = text_to_array(data)
-    spacing("Words count:")
+    spacing("Words count")
     count_words(words)
-    spacing("Words appear:")
+    spacing("Words appear")
     count_words_appear(words)
-    spacing("Ngrams stats:")
+    spacing("Ngrams stats")
     s = generate_large_string(words)
     d = generate_ngram_dict(nk[0], s)
     find_top_k(d, nk[1])
