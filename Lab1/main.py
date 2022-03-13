@@ -109,4 +109,5 @@ def main():
     find_top_k(d, nk[1])
 
 
-main()
+if __name__ == "__main__":
+    main()
