@@ -32,8 +32,12 @@ def count_words(array: []):
 
 
 def count_words_appear(array: []):
+    words_dict = dict()
     for word in array:
-        print(f'"{word}" appears {array.count(word)} time(s)')
+        words_dict[word] = array.count(word)
+
+    for key, value in words_dict.items():
+        print(f"{key} appears {value} time(s)")
 
 
 def generate_large_string(array: []):
