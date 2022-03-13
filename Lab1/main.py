@@ -4,7 +4,7 @@ import os
 import sys
 
 
-def generate_ngram_dict(n: int, text: str):
+def generate_ngram_dict(n: int, text: str) -> dict:
     dictionary = dict()
     for i in range(0, len(text) - n + 1, 1):
         ngram = ''
@@ -42,16 +42,16 @@ def count_words_appear(array: []):
         print(f"{key} appears {value} time(s)")
 
 
-def generate_large_string(array: []):
+def generate_large_string(array: []) -> str:
     return "".join(array)
 
 
-def clear_sentence_symbols(sentence: str):
+def clear_sentence_symbols(sentence: str) -> str:
     sentence = re.sub(r'[^\w\s]', '', sentence)
     return sentence
 
 
-def text_to_array(text: str):
+def text_to_array(text: str) -> []:
     try:
         nltk.data.find('tokenizers/punkt')
     except LookupError:
@@ -68,7 +68,7 @@ def text_to_array(text: str):
     return words
 
 
-def input_values():
+def input_values() -> (int, int):
     try:
         n = int(input('Enter N: '))
     except ValueError:
