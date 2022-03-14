@@ -101,7 +101,7 @@ def find_top_k(dictionary: dict, k: int):
 
 
 def is_empty(path: str) -> bool:
-    return True if os.path.getsize(path) == 0 else False
+    return os.path.getsize(path) == 0
 
 
 def read_file(path: str) -> str:
