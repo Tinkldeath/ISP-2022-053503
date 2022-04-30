@@ -5,9 +5,6 @@ from Modules.lib.abstract.converter import Converter
 
 class JSONStringConverter(Converter):
 
-    def __init__(self):
-        pass
-
     def split_dict(self, s: str) -> str:
         open_braces = 0
         close_braces = 0
