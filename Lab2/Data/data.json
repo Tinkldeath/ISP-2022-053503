@@ -1,0 +1,29 @@
+{
+"persons": [ {
+"type": "Person",
+"full_name": "Person1",
+"email": "person1@gmail.com",
+"phone": "+375291111111",
+"age": 10
+}, {
+"type": "Person",
+"full_name": "Person2",
+"email": "person2@gmail.com",
+"phone": "+375292222222",
+"age": 20
+}, {
+"type": "Person",
+"full_name": "Person3",
+"email": "person3@gmail.com",
+"phone": "+375293333333",
+"age": 30
+}, {
+"type": "Person",
+"full_name": "Person4",
+"email": "person4@gmail.com",
+"phone": "+375294444444",
+"age": 40
+} ],
+"bool1": false,
+"bool2": true
+}

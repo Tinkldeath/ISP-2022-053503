@@ -1,5 +1,5 @@
-from Modules.factory.serializer_factory import Serializer
-from Modules.factory.serializer_factory import SerializerFactory
+import os.path
+from Modules.lib.factory.serializer_factory import Serializer, SerializerFactory
 
 
 class JSONSerializerFactory(SerializerFactory):
@@ -13,7 +13,13 @@ class JSONSerializer(Serializer):
         pass
 
     def dump(self, obj, fp):  # сериализует Python объект в файл
-        return
+        if os.path.exists(fp):
+            file = open(fp, "w")
+            file.write(self.__serialize_typed(type(obj), obj))
+            file.close()
+            print(f'Object serialized to file {fp}')
+        else:
+            print("File is not exist")
 
     def dumps(self, obj) -> str:  # сериализует Python объект в строку
         return self.__serialize_typed(type(obj), obj)
@@ -36,7 +42,10 @@ class JSONSerializer(Serializer):
         if t is set:
             return self.__serialize_set(value)
         if t is bool:
-            return f'{value}'
+            if value is True:
+                return "true"
+            else:
+                return "false"
         if t is None:
             return "null"
 

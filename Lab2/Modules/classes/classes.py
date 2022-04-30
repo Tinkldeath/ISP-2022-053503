@@ -1,5 +1,5 @@
 from abc import ABC
-from Modules.serializable_type.serializable_type import Serializable
+from Modules.lib.serializable_type.serializable_type import Serializable
 
 
 class Person(Serializable, ABC):
