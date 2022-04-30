@@ -1,25 +1,19 @@
-from abc import ABC, abstractmethod
+from Modules.lib.abstract.serializer import Serializer
+from Modules.lib.serializers.json_serializer import JSONSerializer
+from Modules.lib.serializers.yaml_serializer import YamlSerializer
+from Modules.lib.serializers.toml_serializer import TomlSerializer
+
+SERIALIZERS = {
+    "json": JSONSerializer(),
+    "yaml": YamlSerializer(),
+    "toml": TomlSerializer()
+}
 
 
-class SerializerFactory(ABC):
-    @abstractmethod
-    def create_serializer(self):
-        pass
-
-
-class Serializer(ABC):
-    @abstractmethod
-    def dump(self, obj: object, fp: str):  # сериализует Python объект в файл
-        pass
-
-    @abstractmethod
-    def dumps(self, obj: object) -> str:  # сериализует Python объект в строку
-        pass
-
-    @abstractmethod
-    def load(self, fp: str) -> object:  # десериализует Python объект из файла
-        pass
-
-    @abstractmethod
-    def loads(self, s: str) -> object :  # десериализует Python объект из строки
-        pass
+class SerializerFactory(object):
+    @staticmethod
+    def create_serializer(serializer_type: str) -> Serializer:
+        serializer = SERIALIZERS.get(serializer_type.lower(), None)
+        if not serializer:
+            raise ValueError(f'Format {serializer_type} is not supported')
+        return serializer

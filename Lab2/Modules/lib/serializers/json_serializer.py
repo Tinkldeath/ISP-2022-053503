@@ -1,11 +1,6 @@
 import os.path
-from Modules.lib.factory.serializer_factory import Serializer, SerializerFactory
-from Modules.lib.serializable_type.string_converter import Converter
-
-
-class JSONSerializerFactory(SerializerFactory):
-    def create_serializer(self):
-        return JSONSerializer()
+from Modules.lib.factory.serializer_factory import Serializer
+from Modules.lib.abstract.converter import Converter
 
 
 class JSONStringConverter(Converter):
@@ -49,6 +44,7 @@ class JSONStringConverter(Converter):
 
 
 class JSONSerializer(Serializer):
+
     __converter = JSONStringConverter()
 
     def dump(self, obj: object, fp: str):  # сериализует Python объект в файл
@@ -97,15 +93,6 @@ class JSONSerializer(Serializer):
         if value is None:
             return "null"
 
-    def __serialize_set(self, s: set):
-        answer = str()
-        answer += "{ "
-        for item in s:
-            answer += f'"{self.__serialize_typed(type(item), item)}", '
-        new_answer = answer[:-2]
-        new_answer += " }"
-        return new_answer
-
     def __serialize_dict(self, d: dict) -> str:
         answer = str()
         answer += "{\n"
@@ -130,9 +117,6 @@ class JSONSerializer(Serializer):
         if s[0] == '{' and s.__contains__(':'):
             value = self.__converter.split_dict(s)
             return self.__load_dict(value)
-        elif s[0] == '{':
-            value = self.__converter.split_dict(s)
-            return self.__load_set(value)
         elif s[0] == '[':
             value = self.__converter.split_iterable(s)
             return self.__load_list(value)
@@ -150,7 +134,6 @@ class JSONSerializer(Serializer):
                 return None
             else:
                 return s
-
 
     def __load_dict(self, s: str) -> dict:
         d = dict()
@@ -216,18 +199,3 @@ class JSONSerializer(Serializer):
             value = ""
             i += 1
         return l
-
-    def __load_set(self, s: str) -> set:
-        _set = set()
-        i = 1
-        n = len(s)
-        value = ""
-        while i < n:
-            if s[i] == ',':
-                _set.add(self.__load_typed(value))
-                value = ""
-                i += 1
-            else:
-                value += s[i]
-                i += 1
-        return _set

@@ -1,5 +1,5 @@
 from abc import ABC
-from Modules.lib.serializable_type.serializable_type import Serializable
+from Modules.lib.abstract.serializable import Serializable
 
 
 class Person(Serializable, ABC):
@@ -16,7 +16,7 @@ class Person(Serializable, ABC):
 
     def to_serializable(self) -> dict:
         serializable = dict()
-        serializable['type'] = """Person"""
+        serializable['type'] = "Person"
         serializable['full_name'] = self.__full_name
         serializable['email'] = self.__email
         serializable['phone'] = self.__phone
@@ -38,7 +38,7 @@ class Company(Serializable, ABC):
 
     def to_serializable(self) -> dict:
         s = dict()
-        s['type'] = """Company"""
+        s['type'] = "Company"
         s['name'] = self.__name
         s['director'] = self.__director.to_serializable()
         emp = list()
