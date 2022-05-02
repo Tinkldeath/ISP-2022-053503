@@ -87,8 +87,7 @@ class JSONSerializer(Serializer):
                 return "true"
             else:
                 return "false"
-        if value is None:
-            return "null"
+        return "null"
 
     def __serialize_dict(self, d: dict) -> str:
         answer = str()
@@ -117,20 +116,18 @@ class JSONSerializer(Serializer):
         elif s[0] == '[':
             value = self.__converter.split_iterable(s)
             return self.__load_list(value)
-        else:
-            if s.isdigit():
-                if s.__contains__('.'):
-                    return float(s)
-                else:
-                    return int(s)
-            elif s == "true":
-                return True
-            elif s == "false":
-                return False
-            elif s == "null":
-                return None
-            else:
-                return s
+        elif s == "true":
+            return True
+        elif s == "false":
+            return False
+        elif s == "null":
+            return None
+        elif s.isdigit():
+            return int(s)
+        try:
+            return float(s)
+        except ValueError:
+            return s
 
     def __load_dict(self, s: str) -> dict:
         d = dict()
