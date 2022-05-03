@@ -147,7 +147,7 @@ class YamlSerializer(Serializer):
                 key = array[i].replace(':', "")
                 value = self.__converter.split_iterable(s)
                 d[key] = self.__load_list(value)
-                i += len(value.split(' '))
+                i += len(value.split(' ')) + 2
             elif array[i+1] == "---":
                 j = i+1
                 s = ""

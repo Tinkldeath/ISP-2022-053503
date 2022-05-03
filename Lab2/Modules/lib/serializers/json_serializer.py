@@ -76,12 +76,10 @@ class JSONSerializer(Serializer):
             return f'"{value}"'
         if t is int or t is float:
             return f'{value}'
-        if t is tuple or t is list:
+        if t is tuple or t is list or t is set:
             return self.__serialize_iterable(value)
         if t is dict:
             return self.__serialize_dict(value)
-        if t is set:
-            return self.__serialize_iterable(value)
         if t is bool:
             if value is True:
                 return "true"
