@@ -1,132 +1,64 @@
 {
-"companies": [ {
-"type": "Company",
-"name": "Company 1",
-"director": {
-"type": "Person",
-"full_name": "Director 1",
-"email": "director1@gmail.com",
-"phone": "+375291111111",
-"age": 30
+	"__closure__":	null,
+	"__code__":	{
+	"TYPE":	"code",
+	"VALUE":	{
+	"__doc__":	"Create a code object.  Not for the faint of heart.",
+	"co_argcount":	1,
+	"co_cellvars":	{
+	"TYPE":	"tuple",
+	"VALUE":	[]
 },
-"employee": [ {
-"type": "Person",
-"full_name": "Person1",
-"email": "person1@gmail.com",
-"phone": "+375291111111",
-"age": 20
-}, {
-"type": "Person",
-"full_name": "Person2",
-"email": "person2@gmail.com",
-"phone": "+375292222222",
-"age": 40
-}, {
-"type": "Person",
-"full_name": "Person3",
-"email": "person3@gmail.com",
-"phone": "+375293333333",
-"age": 60
-}, {
-"type": "Person",
-"full_name": "Person4",
-"email": "person4@gmail.com",
-"phone": "+375294444444",
-"age": 80
-}, {
-"type": "Person",
-"full_name": "Person5",
-"email": "person5@gmail.com",
-"phone": "+375295555555",
-"age": 100
-} ],
-"is_legal": true
-}, {
-"type": "Company",
-"name": "Company 2",
-"director": {
-"type": "Person",
-"full_name": "Director 2",
-"email": "director2@gmail.com",
-"phone": "+375292222222",
-"age": 30
+	"co_code":	{
+	"TYPE":	"bytes",
+	"VALUE":	[	124,	0,	116,	0,	116,	1,	102,	3,	83,	0	]
 },
-"employee": [ {
-"type": "Person",
-"full_name": "Person1",
-"email": "person1@gmail.com",
-"phone": "+375291111111",
-"age": 20
-}, {
-"type": "Person",
-"full_name": "Person2",
-"email": "person2@gmail.com",
-"phone": "+375292222222",
-"age": 40
-}, {
-"type": "Person",
-"full_name": "Person3",
-"email": "person3@gmail.com",
-"phone": "+375293333333",
-"age": 60
-}, {
-"type": "Person",
-"full_name": "Person4",
-"email": "person4@gmail.com",
-"phone": "+375294444444",
-"age": 80
-}, {
-"type": "Person",
-"full_name": "Person5",
-"email": "person5@gmail.com",
-"phone": "+375295555555",
-"age": 100
-} ],
-"is_legal": true
-}, {
-"type": "Company",
-"name": "Company 3",
-"director": {
-"type": "Person",
-"full_name": "Director 3",
-"email": "director3@gmail.com",
-"phone": "+375293333333",
-"age": 30
+	"co_consts":	{
+	"TYPE":	"tuple",
+	"VALUE":	[	null	]
 },
-"employee": [ {
-"type": "Person",
-"full_name": "Person1",
-"email": "person1@gmail.com",
-"phone": "+375291111111",
-"age": 20
-}, {
-"type": "Person",
-"full_name": "Person2",
-"email": "person2@gmail.com",
-"phone": "+375292222222",
-"age": 40
-}, {
-"type": "Person",
-"full_name": "Person3",
-"email": "person3@gmail.com",
-"phone": "+375293333333",
-"age": 60
-}, {
-"type": "Person",
-"full_name": "Person4",
-"email": "person4@gmail.com",
-"phone": "+375294444444",
-"age": 80
-}, {
-"type": "Person",
-"full_name": "Person5",
-"email": "person5@gmail.com",
-"phone": "+375295555555",
-"age": 100
-} ],
-"is_legal": true
-} ],
-"complete": true,
-"moderated": false,
-"sender": null
+	"co_filename":	"/Users/dima/Documents/BSUIR/Python/ISP-2022-053503/Lab2/Modules/functions/functions.py",
+	"co_firstlineno":	21,
+	"co_flags":	67,
+	"co_freevars":	{
+	"TYPE":	"tuple",
+	"VALUE":	[]
+},
+	"co_kwonlyargcount":	0,
+	"co_linetable":	{
+	"TYPE":	"bytes",
+	"VALUE":	[	10,	1	]
+},
+	"co_lnotab":	{
+	"TYPE":	"bytes",
+	"VALUE":	[	0,	1	]
+},
+	"co_name":	"get_vars",
+	"co_names":	{
+	"TYPE":	"tuple",
+	"VALUE":	[	"some_dict",	"some_list"	]
+},
+	"co_nlocals":	1,
+	"co_posonlyargcount":	0,
+	"co_stacksize":	3,
+	"co_varnames":	{
+	"TYPE":	"tuple",
+	"VALUE":	[	"n"	]
+}
+}
+},
+	"__globals__":	{
+	"some_dict":	{
+	"one":	1,
+	"2":	"two",
+	"three":	"3",
+	"4":	4.0
+},
+	"some_list":	{
+	"TYPE":	"list",
+	"VALUE":	[	"one",	2,	2.25,	"five",	true,	null	]
+}
+},
+	"__defaults__":	null,
+	"__name__":	"get_vars"
 }

@@ -1,6 +1,7 @@
 import os
 from Modules.lib.abstract.serializer import Serializer
 from Modules.lib.abstract.converter import Converter
+from Modules.lib.factory.typed_serializer import TypedSerializer
 
 
 class YamlStringConverter(Converter):
@@ -92,6 +93,8 @@ class YamlSerializer(Serializer):
                 return "true"
             else:
                 return "false"
+        elif hasattr(value, '__call__'):
+            return self.__serialize_typed(type(TypedSerializer.serialize_func(value)), TypedSerializer.serialize_func(value))
         return "null"
 
     def __serialize_iterable(self, item, level: int = 0) -> str:

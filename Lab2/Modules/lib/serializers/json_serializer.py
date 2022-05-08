@@ -1,6 +1,7 @@
 import os.path
 from Modules.lib.factory.serializer_factory import Serializer
 from Modules.lib.abstract.converter import Converter
+from Modules.lib.factory.typed_serializer import TypedSerializer
 
 
 class JSONStringConverter(Converter):
@@ -61,37 +62,44 @@ class JSONSerializer(Serializer):
             with open(fp, 'r') as file:
                 s = file.read()
                 s = s.replace("\n", "")
-                s = s.replace(" ", "")
-            return self.__load_typed(s)
+                s = s.replace("\t", "")
+                obj = self.loads(s)
+                if "__code__" in obj:
+                    return TypedSerializer.deserialize_func(obj)
+                return obj
         else:
             print("File is not exist")
 
     def loads(self, s) -> object:  # десериализует Python объект из строки
         s = s.replace("\n", "")
-        s = s.replace(" ", "")
+        s = s.replace("\t", "")
         return self.__load_typed(s)
 
     def __serialize_typed(self, t: type, value) -> str:
         if t is str:
             return f'"{value}"'
-        if t is int or t is float:
+        elif t is int or t is float:
             return f'{value}'
-        if t is tuple or t is list or t is set:
+        elif t is tuple or t is list or t is set:
             return self.__serialize_iterable(value)
-        if t is dict:
+        elif t is dict:
             return self.__serialize_dict(value)
-        if t is bool:
+        elif t is bool:
             if value is True:
                 return "true"
             else:
                 return "false"
+        elif hasattr(value, '__call__'):
+            return self.__serialize_typed(type(TypedSerializer.serialize_func(value)), TypedSerializer.serialize_func(value))
         return "null"
 
     def __serialize_dict(self, d: dict) -> str:
+        if len(d) == 0:
+            return "{}"
         answer = str()
         answer += "{\n"
         for key, value in d.items():
-            answer += f'"{key}": '
+            answer += f'\t"{key}":\t'
             t = type(value)
             answer += self.__serialize_typed(t, value) + ",\n"
         new_answer = answer[:-2]
@@ -99,16 +107,22 @@ class JSONSerializer(Serializer):
         return new_answer
 
     def __serialize_iterable(self, item) -> str:
+        if len(item) == 0:
+            return "[]"
         answer = str()
-        answer += "[ "
+        answer += "[\t"
         for element in item:
-            answer += self.__serialize_typed(type(element), element) + ", "
+            answer += self.__serialize_typed(type(element), element) + ",\t"
         new_answer = answer[:-2]
-        new_answer += " ]"
+        new_answer += "\t]"
         return new_answer
 
     def __load_typed(self, s: str) -> object:
-        if s[0] == '{' and s.count(':') > 0:
+        if s == "{}":
+            return dict()
+        elif s == "[]":
+            return list()
+        elif s[0] == '{' and s.count(':') > 0:
             value = self.__converter.split_dict(s)
             return self.__load_dict(value)
         elif s[0] == '[':
@@ -130,6 +144,8 @@ class JSONSerializer(Serializer):
         return s
 
     def __load_dict(self, s: str) -> dict:
+        if s == "{}":
+            return dict()
         d = dict()
         i = 1
         s = s.replace('"', "")
@@ -166,6 +182,8 @@ class JSONSerializer(Serializer):
         return d
 
     def __load_list(self, s: str) -> list:
+        if s == "[]":
+            return list()
         l = list()
         i = 1
         n = len(s)
@@ -185,7 +203,7 @@ class JSONSerializer(Serializer):
                 value = self.__converter.split_iterable(value)
             else:
                 j = i
-                while j < n and s[j] != ',':
+                while j < n and s[j] != ',' and s[j] != ']':
                     value += s[j]
                     j += 1
             i += len(value)

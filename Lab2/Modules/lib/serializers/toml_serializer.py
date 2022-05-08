@@ -1,6 +1,7 @@
 import os
 from Modules.lib.abstract.serializer import Serializer
 from Modules.lib.abstract.converter import Converter
+from Modules.lib.factory.typed_serializer import TypedSerializer
 
 
 class TomlStringConverter(Converter):
@@ -73,20 +74,22 @@ class TomlSerializer(Serializer):
     def __serialize_typed(self, t: type, value, key, level=0) -> str:
         if t is str:
             return f'"{value}"'
-        if t is int or t is float:
+        elif t is int or t is float:
             return f'{value}'
-        if t is tuple or t is list or t is set:
+        elif t is tuple or t is list or t is set:
             for el in value:
                 if type(el) != dict:
                     return self.__serialize_default_iterable(value)
             return self.__serialize_iterable(value, key, level+1)
-        if t is dict:
+        elif t is dict:
             return self.__serialize_dict(value, key, level+1)
-        if t is bool:
+        elif t is bool:
             if value is True:
                 return "true"
             else:
                 return "false"
+        elif hasattr(value, '__call__'):
+            return self.__serialize_dict(TypedSerializer.serialize_func(value), "")
         return f'"null"'
 
     def __serialize_dict(self, item: dict, key, level=0) -> str:
