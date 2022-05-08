@@ -11,7 +11,7 @@
 								type: "Person"
 								full_name: "Director1"
 								email: "director1@gmail.com"
-								phone: 375291111111.0
+								phone: "+375291111111"
 								age: 30
 							...
 						employee: 
@@ -21,7 +21,7 @@
 										type: "Person"
 										full_name: "Person1"
 										email: "person1@gmail.com"
-										phone: 375291111111.0
+										phone: "+375291111111"
 										age: 20
 									...
 							- 
@@ -29,7 +29,7 @@
 										type: "Person"
 										full_name: "Person2"
 										email: "person2@gmail.com"
-										phone: 375292222222.0
+										phone: "+375292222222"
 										age: 40
 									...
 							- 
@@ -37,7 +37,7 @@
 										type: "Person"
 										full_name: "Person3"
 										email: "person3@gmail.com"
-										phone: 375293333333.0
+										phone: "+375293333333"
 										age: 60
 									...
 							- 
@@ -45,7 +45,7 @@
 										type: "Person"
 										full_name: "Person4"
 										email: "person4@gmail.com"
-										phone: 375294444444.0
+										phone: "+375294444444"
 										age: 80
 									...
 							- 
@@ -53,7 +53,7 @@
 										type: "Person"
 										full_name: "Person5"
 										email: "person5@gmail.com"
-										phone: 375295555555.0
+										phone: "+375295555555"
 										age: 100
 									...
 							...
@@ -68,7 +68,7 @@
 								type: "Person"
 								full_name: "Director2"
 								email: "director2@gmail.com"
-								phone: 375292222222.0
+								phone: "+375292222222"
 								age: 30
 							...
 						employee: 
@@ -78,7 +78,7 @@
 										type: "Person"
 										full_name: "Person1"
 										email: "person1@gmail.com"
-										phone: 375291111111.0
+										phone: "+375291111111"
 										age: 20
 									...
 							- 
@@ -86,7 +86,7 @@
 										type: "Person"
 										full_name: "Person2"
 										email: "person2@gmail.com"
-										phone: 375292222222.0
+										phone: "+375292222222"
 										age: 40
 									...
 							- 
@@ -94,7 +94,7 @@
 										type: "Person"
 										full_name: "Person3"
 										email: "person3@gmail.com"
-										phone: 375293333333.0
+										phone: "+375293333333"
 										age: 60
 									...
 							- 
@@ -102,7 +102,7 @@
 										type: "Person"
 										full_name: "Person4"
 										email: "person4@gmail.com"
-										phone: 375294444444.0
+										phone: "+375294444444"
 										age: 80
 									...
 							- 
@@ -110,7 +110,7 @@
 										type: "Person"
 										full_name: "Person5"
 										email: "person5@gmail.com"
-										phone: 375295555555.0
+										phone: "+375295555555"
 										age: 100
 									...
 							...
@@ -125,7 +125,7 @@
 								type: "Person"
 								full_name: "Director3"
 								email: "director3@gmail.com"
-								phone: 375293333333.0
+								phone: "+375293333333"
 								age: 30
 							...
 						employee: 
@@ -135,7 +135,7 @@
 										type: "Person"
 										full_name: "Person1"
 										email: "person1@gmail.com"
-										phone: 375291111111.0
+										phone: "+375291111111"
 										age: 20
 									...
 							- 
@@ -143,7 +143,7 @@
 										type: "Person"
 										full_name: "Person2"
 										email: "person2@gmail.com"
-										phone: 375292222222.0
+										phone: "+375292222222"
 										age: 40
 									...
 							- 
@@ -151,7 +151,7 @@
 										type: "Person"
 										full_name: "Person3"
 										email: "person3@gmail.com"
-										phone: 375293333333.0
+										phone: "+375293333333"
 										age: 60
 									...
 							- 
@@ -159,7 +159,7 @@
 										type: "Person"
 										full_name: "Person4"
 										email: "person4@gmail.com"
-										phone: 375294444444.0
+										phone: "+375294444444"
 										age: 80
 									...
 							- 
@@ -167,7 +167,7 @@
 										type: "Person"
 										full_name: "Person5"
 										email: "person5@gmail.com"
-										phone: 375295555555.0
+										phone: "+375295555555"
 										age: 100
 									...
 							...

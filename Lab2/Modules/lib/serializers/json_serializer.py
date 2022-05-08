@@ -108,7 +108,7 @@ class JSONSerializer(Serializer):
         return new_answer
 
     def __load_typed(self, s: str) -> object:
-        if s[0] == '{' and s.__contains__(':'):
+        if s[0] == '{' and s.count(':') > 0:
             value = self.__converter.split_dict(s)
             return self.__load_dict(value)
         elif s[0] == '[':
@@ -122,10 +122,12 @@ class JSONSerializer(Serializer):
             return None
         elif s.isdigit():
             return int(s)
-        try:
-            return float(s)
-        except ValueError:
-            return s
+        elif s.count('.') > 0:
+            try:
+                return float(s)
+            except ValueError:
+                return s
+        return s
 
     def __load_dict(self, s: str) -> dict:
         d = dict()

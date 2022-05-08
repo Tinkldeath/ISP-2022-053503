@@ -111,10 +111,11 @@ class YamlSerializer(Serializer):
         return answer
 
     def __load_typed(self, s: str) -> object:
+        s = s.replace('"', "")
         if len(s) > 6:
             if s[1] == '-' and s[5] != '-':
                 return self.__load_dict(self.__converter.split_dict(s))
-            elif s.__contains__("-"):
+            elif s.count("-") > 0:
                 return self.__load_list(self.__converter.split_iterable(s))
         elif s == "null":
             return None
@@ -124,10 +125,12 @@ class YamlSerializer(Serializer):
             return False
         elif s.isdigit():
             return int(s)
-        try:
-            return float(s)
-        except ValueError:
-            return s.replace('"', "")
+        elif s.count('.') > 0:
+            try:
+                return float(s)
+            except ValueError:
+                return s
+        return s
 
     def __load_dict(self, s: str) -> dict:
         array = s.split(' ')
