@@ -1,32 +1,148 @@
-'##function_type##':
-  __code__:
-    '##code_type##':
-      co_argcount: 1
-      co_cellvars: []
-      co_code: '[ 100 ,1 ,125 ,1 ,116 ,0 ,160 ,1 ,124 ,1 ,124 ,0 ,20 ,0 ,116 ,2 ,20
-        ,0 ,161 ,1 ,83 ,0  ]'
-      co_consts:
-      - null
-      - 123
-      co_filename: /Users/dima/Documents/BSUIR/Python/ISP-2022-053503/Lab2/main.py
-      co_firstlineno: 7
-      co_flags: 67
-      co_freevars: []
-      co_kwonlyargcount: 0
-      co_lnotab: '[ 0 ,1 ,4 ,1  ]'
-      co_name: f
-      co_names:
-      - math
-      - sin
-      - c
-      co_nlocals: 2
-      co_posonlyargcount: 0
-      co_stacksize: 4
-      co_varnames:
-      - x
-      - a
-  __globals__:
-    c: 42
-    math:
-      '##module_type##': math
-  __name__: f
+type = "function"
+
+[data]
+type = "dict"
+
+[data.data.__globals__]
+type = "dict"
+
+[data.data.attributes]
+type = "dict"
+
+[data.data.__globals__.data.print]
+type = "builtinfunction"
+
+[data.data.attributes.data.__name__]
+type = "str"
+data = "simple"
+
+[data.data.attributes.data.__defaults__]
+type = "nonetype"
+data = "null"
+
+[data.data.attributes.data.__closure__]
+type = "nonetype"
+data = "null"
+
+[data.data.attributes.data.__code__]
+type = "codeobject"
+
+[data.data.__globals__.data.print.data]
+type = "dict"
+
+[data.data.attributes.data.__code__.data]
+type = "dict"
+
+[data.data.__globals__.data.print.data.data.type]
+type = "str"
+data = "builtinfunction"
+
+[data.data.__globals__.data.print.data.data.module]
+type = "str"
+data = "builtins"
+
+[data.data.__globals__.data.print.data.data.attributes]
+type = "dict"
+
+[data.data.attributes.data.__code__.data.data.co_argcount]
+type = "int"
+data = 1
+
+[data.data.attributes.data.__code__.data.data.co_cellvars]
+type = "tuple"
+data = []
+
+[data.data.attributes.data.__code__.data.data.co_code]
+type = "bytes"
+data = [ 116, 0, 100, 1, 124, 0, 155, 0, 157, 2, 131, 1, 1, 0, 100, 0, 83, 0,]
+
+[data.data.attributes.data.__code__.data.data.co_consts]
+type = "tuple"
+[[data.data.attributes.data.__code__.data.data.co_consts.data]]
+type = "nonetype"
+data = "null"
+
+[[data.data.attributes.data.__code__.data.data.co_consts.data]]
+type = "str"
+data = "I print a = "
+
+[data.data.attributes.data.__code__.data.data.co_filename]
+type = "str"
+data = "/Users/dima/Documents/BSUIR/Python/ISP-2022-053503/Lab2/main.py"
+
+[data.data.attributes.data.__code__.data.data.co_firstlineno]
+type = "int"
+data = 12
+
+[data.data.attributes.data.__code__.data.data.co_flags]
+type = "int"
+data = 67
+
+[data.data.attributes.data.__code__.data.data.co_freevars]
+type = "tuple"
+data = []
+
+[data.data.attributes.data.__code__.data.data.co_kwonlyargcount]
+type = "int"
+data = 0
+
+[data.data.attributes.data.__code__.data.data.co_lines]
+type = "builtinfunction"
+
+[data.data.attributes.data.__code__.data.data.co_linetable]
+type = "bytes"
+data = [ 18, 1,]
+
+[data.data.attributes.data.__code__.data.data.co_lnotab]
+type = "bytes"
+data = [ 0, 1,]
+
+[data.data.attributes.data.__code__.data.data.co_name]
+type = "str"
+data = "simple"
+
+[data.data.attributes.data.__code__.data.data.co_names]
+type = "tuple"
+[[data.data.attributes.data.__code__.data.data.co_names.data]]
+type = "str"
+data = "print"
+
+[data.data.attributes.data.__code__.data.data.co_nlocals]
+type = "int"
+data = 1
+
+[data.data.attributes.data.__code__.data.data.co_posonlyargcount]
+type = "int"
+data = 0
+
+[data.data.attributes.data.__code__.data.data.co_stacksize]
+type = "int"
+data = 3
+
+[data.data.attributes.data.__code__.data.data.co_varnames]
+type = "tuple"
+[[data.data.attributes.data.__code__.data.data.co_varnames.data]]
+type = "str"
+data = "a"
+
+[data.data.attributes.data.__code__.data.data.co_lines.data]
+type = "dict"
+
+[data.data.__globals__.data.print.data.data.attributes.data.__name__]
+type = "str"
+data = "print"
+
+[data.data.attributes.data.__code__.data.data.co_lines.data.data.type]
+type = "str"
+data = "builtinfunction"
+
+[data.data.attributes.data.__code__.data.data.co_lines.data.data.module]
+type = "nonetype"
+data = "null"
+
+[data.data.attributes.data.__code__.data.data.co_lines.data.data.attributes]
+type = "dict"
+
+[data.data.attributes.data.__code__.data.data.co_lines.data.data.attributes.data.__name__]
+type = "str"
+data = "co_lines"
