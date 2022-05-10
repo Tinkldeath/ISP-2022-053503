@@ -10,16 +10,21 @@ def f(x):
 
 
 serializer = SerializerFactory.create_serializer("json")
-serializer.dump(f, "/Users/dima/Documents/BSUIR/Python/ISP-2022-053503/Lab2/data/data.json")
-foo_json = serializer.load("/Users/dima/Documents/BSUIR/Python/ISP-2022-053503/Lab2/data/data.json")
-print(foo_json(2))
+config = serializer.load("./config/config.json")
+data_path = ""
+form = ""
 
-serializer = SerializerFactory.create_serializer("yaml")
-serializer.dump(f, "/Users/dima/Documents/BSUIR/Python/ISP-2022-053503/Lab2/data/data.yml")
-foo_yaml = serializer.load("/Users/dima/Documents/BSUIR/Python/ISP-2022-053503/Lab2/data/data.yml")
-print(foo_yaml(2))
-
-serializer = SerializerFactory.create_serializer("toml")
-serializer.dump(f, "/Users/dima/Documents/BSUIR/Python/ISP-2022-053503/Lab2/data/data.toml")
-foo_toml = serializer.load("/Users/dima/Documents/BSUIR/Python/ISP-2022-053503/Lab2/data/data.toml")
-print(foo_toml(2))
+if config is not None:
+    for key, value in config.items():
+        if key == "data_folder":
+            data_path += value
+        elif key == "format":
+            form += value
+        else:
+            continue
+    if data_path != "" and form != "":
+        serializer = SerializerFactory.create_serializer(config["format"])
+        serializer.dump(f, f'{data_path}/data.{form.lower()}')
+        foo = serializer.load(f'{data_path}/data.{form.lower()}')
+        print(f'Function(2): {f(2)}')
+        print(f'Serialized_function(2): {f(2)}')

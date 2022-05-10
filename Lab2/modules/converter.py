@@ -200,8 +200,6 @@ class Converter:
                     return classmethod(Converter.load_func(value))
                 elif key == "##instance_type##":
                     return Converter.load_obj(value)
-                else:
-                    return Converter.load(value)
         return obj
 
     @staticmethod
@@ -248,7 +246,6 @@ class Converter:
         try:
             def __init__(self):
                 pass
-
             cls = obj["class"]
             temp = cls.__init__
             cls.__init__ = __init__
