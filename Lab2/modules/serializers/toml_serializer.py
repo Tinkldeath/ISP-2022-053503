@@ -17,6 +17,8 @@ class TomlSerializer(Serializer):
 
     def dumps(self, obj: object) -> str:
         converted = Converter.convert(obj)
+        if type(converted) is not dict:
+            return ""
         return pytoml.dumps(converted, sort_keys=True)
 
     def load(self, fp: str) -> object:

@@ -1,0 +1,41 @@
+{
+    "##function_type##": {
+        "__code__": {
+            "##code_type##": {
+                "co_argcount": 1,
+                "co_cellvars": [],
+                "co_code": "[ 100 ,1 ,125 ,1 ,116 ,0 ,160 ,1 ,124 ,1 ,124 ,0 ,20 ,0 ,116 ,2 ,20 ,0 ,161 ,1 ,83 ,0  ]",
+                "co_consts": [
+                    null,
+                    123
+                ],
+                "co_filename": "/Users/dima/Documents/BSUIR/Python/ISP-2022-053503/Lab2/tests/tests_data.py",
+                "co_firstlineno": 44,
+                "co_flags": 67,
+                "co_freevars": [],
+                "co_kwonlyargcount": 0,
+                "co_lnotab": "[ 0 ,1 ,4 ,1  ]",
+                "co_name": "butoma_func",
+                "co_names": [
+                    "math",
+                    "sin",
+                    "c"
+                ],
+                "co_nlocals": 2,
+                "co_posonlyargcount": 0,
+                "co_stacksize": 4,
+                "co_varnames": [
+                    "x",
+                    "a"
+                ]
+            }
+        },
+        "__globals__": {
+            "c": 42,
+            "math": {
+                "##module_type##": "math"
+            }
+        },
+        "__name__": "butoma_func"
+    }
+}

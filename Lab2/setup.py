@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    name="serializer",
+    name="serializer-lab",
     packages=[
         "modules",
         "modules/serializers",

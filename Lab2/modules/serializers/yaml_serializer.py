@@ -31,4 +31,4 @@ class YamlSerializer(Serializer):
     def loads(self, s: str) -> object:
         str_stream = StringIO(s)
         obj = safe_load(str_stream)
-        return Converter.load_obj(obj)
+        return Converter.load(obj)
