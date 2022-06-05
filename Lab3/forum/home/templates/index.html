@@ -1,11 +1,55 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Home Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital@1&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <h1>Home Page</h1>
-    <p>This page is rendered as a Django Template</p>
-    <h3>Happy Learning :)</h3>
+    <header>
+        <!--NavBar Section-->
+        <div class="navbar">
+<!--            <nav class="navigation hide" id="navigation">-->
+<!--                <span class="close-icon" id="close-icon" onclick="showIconBar()"><i class="fa fa-close"></i></span>-->
+<!--                <ul class="nav-list">-->
+<!--                    <li class="nav-item"><a href="topics.html">Forums</a></li>-->
+<!--                    <li class="nav-item"><a href="treds.html">Posts</a></li>-->
+<!--                    <li class="nav-item"><a href="detail.html">Detail</a></li>-->
+<!--                </ul>-->
+<!--            </nav>-->
+<!--            <a class="bar-icon" id="iconBar" onclick="hideIconBar()"><i class="fa fa-bars"></i></a>-->
+            <div class="brand">Apidopia forum</div>
+            <button class="sign-in-button"> Sign in </button>
+        </div>
+        <!--SearchBox Section-->
+        <div class="search-box">
+            <div>
+<!--                <select name="" id="">-->
+<!--                    <option value="Everything">Everything</option>-->
+<!--                    <option value="Titles">Titles</option>-->
+<!--                    <option value="Descriptions">Descriptions</option>-->
+<!--                </select>-->
+                <input type="text" name="q" placeholder="search ...">
+                <button><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+    </header>
+    {% block content %}
+    {% endblock content %}
+<!--    <script src="{% static 'main.js' %}"></script>-->
+<!--    <div class="forum-info">-->
+<!--        <div class="chart">-->
+<!--            MyForum - Stats &nbsp;<i class="fa fa-bar-chart"></i>-->
+<!--        </div>-->
+<!--        <span><u>5,369</u> Posts in <u>48</u> Topics by <u>8,124</u> Members.</span><br>-->
+<!--        <span>Latest post: <b><a href="">Random post</a></b> on Dec 15 2021 By <a href="">RandomUser</a></span>.<br>-->
+<!--        <span>Check <a href="">the latest posts</a> .</span><br>-->
+<!--    </div>-->
 </body>
 </html>
