@@ -80,12 +80,12 @@ WSGI_APPLICATION = 'forum.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'djangodatabase',
-        'USER': 'dbadmin',
-        'PASSWORD': '12345',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'djangodb',
+        'USER': 'postgres',
+        'PASSWORD': '1234',
+        'HOST': '0.0.0.0',
+        'PORT': '5432',
     }
 }
 
