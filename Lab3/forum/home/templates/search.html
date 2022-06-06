@@ -3,7 +3,7 @@
     <div class="container">
         <!--Navigation-->
         <div class="navigate">
-            <a href="{% url 'home' %}"> Apidopia forum </a> >> <a href="">{{topic.title|title}}</a>
+            <a href="{% url 'home' %}"> Apidopia forum </a> >> Search results for {{query}}: {{treds|length}} Tred(s) found
             <div class="add-tred-button">
                 <a href="{% url 'addtred' %}"> Add tred </a>
             </div>
@@ -21,11 +21,11 @@
                 <div class="subjects">
                     <a href="{{tred.get_url}}">{{tred.title|title}}</a>
                     <br>
-                    <span>Started by <b><a href="{{tred.author.get_url}}">{{tred.author.name|title}}</a></b> .</span>
+                    <span>Started by <b><a href="">{{tred.author.name|title}}</a></b> .</span>
                 </div>
                 <div class="last-reply">
                     {{tred.last_comment.date|date}}
-                    <br>By <b><a href="{{tred.last_comment.author.get_url}}">{{tred.last_comment.author.name|title}}</a></b>
+                    <br>By <b><a href="">{{tred.last_comment.author.name|title}}</a></b>
                 </div>
             </div>
             {% endfor %}

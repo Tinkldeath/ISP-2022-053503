@@ -1,0 +1,10 @@
+{% extends 'inputbase.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+        <h1 style="text-align:center; margin-block:50px; color:#FFFFFF; font-size:30px; font-weight:bold"> Add a new topic: </h1>
+            <form method="post" style="padding-top:1%; padding-left: 40%" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form|crispy}}
+                <input type="Submit" value="AddTopic" style="margin-block:50px; margin-left: 12%">
+            </form>
+{% endblock content %}

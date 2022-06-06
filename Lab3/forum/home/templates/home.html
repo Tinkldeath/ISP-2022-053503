@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
     <div class="container">
             <div class="subforum">
@@ -6,15 +7,15 @@
                     <div>
                         <h1>Topics</h1>
                     </div>
-                    <button class="add-button">Add topic</button>
+                    <a class="add-button" href="{% url 'addtopic' %}">Add topic</a>
                 </div>
                 {% for topic in topics %}
                 <div class="subforum-row">
                     <div class="subforum-icon subforum-column center">
-                        {% if topic.image.url %}
+                        {% if topic.image %}
                         <img src="{{topic.image.url}}">
                         {% else %}
-                        <i class="fa fa-car center"></i>
+                        <img src="{% static 'topic-default.png' %}" width="120" height="65">
                         {% endif %}
                     </div>
                     <div class="subforum-description subforum-column">
@@ -25,7 +26,8 @@
                         <span>{{topic.treds}} Treds</span>
                     </div>
                     <div class="subforum-info subforum-column">
-                        <b><a href="">{{topic.last_tred.title|title}}</a></b> by <a href="">{{topic.last_tred.author|title}}</a>
+                        <b>Last tred:</b>
+                        <b><a href="{{topic.last_tred.get_url}}">{{topic.last_tred.title|title}}</a></b> by <a href="{{topic.last_tred.author.get_url}}">{{topic.last_tred.author|title}}</a>
                         <br>on <small>{{topic.last_tred.date|date}}</small>
                     </div>
                 </div>

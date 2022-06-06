@@ -1,0 +1,55 @@
+{% extends 'inputbase.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+        <div class="container">
+                <div class="navigate">
+                    <span><a href="{% url 'home' %}">Back to forum</a>
+                </div>
+                <h1 style="font-weight:bold; font-size:30px;"> Author's profile: </h1>
+                <div class="body">
+                    <div class="authors">
+                            <div class="username"><a href="">{{author.name|title}}</a></div>
+                            <div>{{author.role}}</div>
+                            {% if author.image %}
+                            <img src="{{author.image.url}}" alt="">
+                            {% else %}
+                            <img src="{% static 'user-default.png' %}">
+                            {% endif %}
+                            <div>Treds: <u>{{author.num_treds}}</u></div>
+                            <div>Rating: <u>{{author.rating}}</u></div>
+                    </div>
+                    <div class="content">
+                            <h1> Bio: </h1>
+                            {{author.bio}}
+                    </div>
+                </div>
+        </div>
+        <div class="container">
+                {% if is_user %}
+                <h1> Change profile data: </h1>
+                        <form method="post" enctype="multipart/form-data" action="{% url 'home' %}">
+                              {% csrf_token %}
+                              {{form|crispy}}
+                                <input type="Submit" value="Change" name="change-profile">
+                        </form>
+                {% endif %}
+        </div>
+        <div class="container">
+            <h1> Treds: </h1>
+            {% for tred in author.get_treds %}
+            <div class="table-row">
+<!--                <div class="status"><i class="fa fa-fire"></i></div>-->
+                <div class="subjects">
+                    <a href="{{tred.get_url}}">{{tred.title|title}}</a>
+                    <br>
+                    <span>Started by <b><a href="">{{tred.author.name|title}}</a></b> .</span>
+                </div>
+                <div class="last-reply">
+                    {{tred.last_comment.date|date}}
+                    <br>By <b><a href="">{{tred.last_comment.author.name|title}}</a></b>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+{% endblock content %}

@@ -42,6 +42,26 @@ h1{
   border: 1px solid #777777;
 }
 
+.add-tred-button{
+    appearance: none;
+    border: 0;
+    border-radius: 5px;
+    background: #2C2C2C;
+    color: #fff;
+    padding: 8px 16px;
+    font-size: 16px;
+    margin-left:94.5%;
+    width: 100px;
+}
+.add-tred-button:focus{
+  outline: none;
+  box-shadow: 0 0 0 4px #cbd6ee;
+}
+.add-tred-button:hover{
+  background: #000000;
+  border: 1px solid #777777;
+}
+
 /* ########################################### */
 /*           Forums.html                       */
 /* ########################################### */

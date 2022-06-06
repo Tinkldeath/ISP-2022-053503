@@ -1,3 +1,4 @@
+import uuid
 from django.db import models
 from django.shortcuts import reverse
 from django_resized import ResizedImageField
@@ -9,9 +10,10 @@ User = get_user_model()
 
 class Topic(models.Model):
     title = models.CharField(max_length=40)
-    slug = models.SlugField(max_length=200, unique=True, blank=True)
+    slug = models.SlugField(max_length=200, default=uuid.uuid4())
     description = models.TextField(blank=True)
     image = ResizedImageField(size=[120, 65], quality=100, upload_to='topics', default=None, null=True, blank=True)
+    approved = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
@@ -23,11 +25,11 @@ class Topic(models.Model):
 
     @property
     def treds(self):
-        return Tred.objects.filter(topic=self).count()
+        return Tred.objects.filter(topic=self, approved=True).count()
 
     @property
     def last_tred(self):
-        return Tred.objects.filter(topic=self).latest('date')
+        return Tred.objects.filter(topic=self, approved=True).latest('date')
 
     def get_url(self):
         return reverse('topic', kwargs={
@@ -38,7 +40,8 @@ class Topic(models.Model):
 class Author(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=40)
-    slug = models.SlugField(max_length=200, unique=True, blank=True)
+    role = models.CharField(max_length=40, default='Member')
+    slug = models.SlugField(max_length=200, default=uuid.uuid4())
     bio = models.TextField(max_length=1000, default='Empty')
     rating = models.IntegerField(default=0)
     image = ResizedImageField(size=[50, 80], quality=100, upload_to='authors', default=None, null=True, blank=True)
@@ -53,6 +56,14 @@ class Author(models.Model):
         if not self.slug:
             self.slug = slugify(self.name)
         super(Author, self).save(*args, **kwargs)
+
+    def get_url(self):
+        return reverse('profile', kwargs={
+            "slug": self.slug
+        })
+
+    def get_treds(self):
+        return Tred.objects.filter(author=self, approved=True)
 
 
 class Reply(models.Model):
@@ -79,7 +90,7 @@ class Comment(models.Model):
 
 class Tred(models.Model):
     title = models.CharField(max_length=200)
-    slug = models.SlugField(max_length=200, unique=True, blank=True)
+    slug = models.SlugField(max_length=200, default=uuid.uuid4())
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     content = models.TextField(max_length=10000)
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE, null=True)

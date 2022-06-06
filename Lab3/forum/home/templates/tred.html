@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
     <div class="container">
         <!--Navigation-->
@@ -17,8 +18,12 @@
             <div class="body">
                 <div class="authors">
                     <div class="username"><a href="">{{tred.author.name|title}}</a></div>
-                    <div>Role</div>
+                    <div>{{tred.author.role}}</div>
+                    {% if tred.author.image %}
                     <img src="{{tred.author.image.url}}" alt="">
+                    {% else %}
+                    <img src="{% static 'user-default.png' %}">
+                    {% endif %}
                     <div>Treds: <u>{{tred.author.num_treds}}</u></div>
                     <div>Rating: <u>{{tred.author.rating}}</u></div>
                 </div>
@@ -33,35 +38,46 @@
         </div>
 
         <!--Comment Area-->
-        <div class="comment-area hide" id="comment-area">
-            <textarea class="comment-background" name="comment" id="" placeholder="comment here ... "></textarea>
-            <input type="submit" value="submit">
-        </div>
+        <form action="{{tred.get_url}}" method="post" >
+            {% csrf_token %}
+            <div class="comment-area hide" id="comment-area">
+                <textarea class="comment-background" name="comment" id="" placeholder="comment here ... "></textarea>
+                <input type="submit" value="submit" name="comment-form">
+            </div>
+        </form>
 
         {% for comment in tred.comments.all %}
         <!--Comments Section-->
         <div class="comments-container">
             <div class="body">
                 <div class="authors">
-                    <div class="username"><a href="">{{comment.author.name|title}}</a></div>
-                    <div>Role</div>
+                    <div class="username"><a href="{{comment.author.get_url}}">{{comment.author.name|title}}</a></div>
+                    <div>{{comment.author.role}}</div>
+                    {% if comment.author.image %}
                     <img src="{{comment.author.image.url}}" alt="">
+                    {% else %}
+                    <img src="{% static 'user-default.png' %}">
+                    {% endif %}
                     <div>Treds: <u>{{comment.author.num_treds}}</u></div>
                     <div>Rating: <u>{{comment.author.rating}}</u></div>
                 </div>
                 <div class="content">
                     {{comment.content}}
                     <div class="comment">
-                        <button class="comment-button" onclick="showReply()">Reply</button>
+                        <button class="comment-button" onclick="showReply('comment{{comment.id}}')">Reply</button>
                     </div>
                 </div>
             </div>
             {% for reply in comment.replies.all %}
                 <div class="body" style="margin-left: 1%">
                     <div class="authors">
-                        <div class="username"><a href="">{{reply.author.name|title}}</a></div>
-                        <div>Role</div>
-                        <img src="{{reply.author.image.url}}" alt="">
+                        <div class="username"><a href="{{reply.author.get_url}}">{{reply.author.name|title}}</a></div>
+                        <div>{{reply.author.role}}</div>
+                        {% if reply.author.image %}
+                        <img src="{{tred.author.image.url}}" alt="">
+                        {% else %}
+                        <img src="{% static 'user-default.png' %}">
+                        {% endif %}
                         <div>Treds: <u>{{reply.author.num_treds}}</u></div>
                         <div>Rating: <u>{{reply.author.rating}}</u></div>
                     </div>
@@ -72,9 +88,13 @@
             {% endfor %}
         </div>
                 <!--Reply Area-->
-                <div class="comment-area hide" id="reply-area">
-                    <textarea class="comment-background" name="reply" id="" placeholder="reply here ... "></textarea>
-                    <input type="submit" value="submit">
-                </div>
+                <form action="{{tred.get_url}}" method="post">
+                    {% csrf_token %}
+                    <div class="comment-area hide" id="comment{{comment.id}}">
+                        <textarea class="comment-background" name="reply" id="" placeholder="reply here ... "></textarea>
+                        <input type="submit" value="submit" name="reply-form">
+                        <input name='comment-id' value='{{comment.id}}' type="hidden">
+                    </div>
+                </form>
         {% endfor %}
 {% endblock content %}
