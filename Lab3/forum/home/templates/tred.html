@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        <!--Navigation-->
+        <div class="navigate">
+            <span><a href="{% url 'home' %}">Apidopia forum</a> >> <a href="{{tred.topic.get_url}}">{{tred.topic.title|title}}</a> >> <a href="{{tred.get_url}}">{{tred.title|title}}</a></span>
+        </div>
+
+        <!--Topic Section-->
+        <div class="topic-container">
+            <!--Original thread-->
+            <div class="head">
+                <div class="authors">{{tred.author.name}}</div>
+                <div class="content">Tred: {{tred.title|title}}</div>
+            </div>
+
+            <div class="body">
+                <div class="authors">
+                    <div class="username"><a href="">{{tred.author.name|title}}</a></div>
+                    <div>Role</div>
+                    <img src="{{tred.author.image.url}}" alt="">
+                    <div>Treds: <u>{{tred.author.num_treds}}</u></div>
+                    <div>Rating: <u>{{tred.author.rating}}</u></div>
+                </div>
+                <div class="content">
+                    {{tred.content}}
+                    {% if tred.image %} <img src="{{tred.image.url}}" alt=""> {% endif %}
+                    <div class="comment">
+                        <button class="comment-button" onclick="showComment()">Comment</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Comment Area-->
+        <div class="comment-area hide" id="comment-area">
+            <textarea class="comment-background" name="comment" id="" placeholder="comment here ... "></textarea>
+            <input type="submit" value="submit">
+        </div>
+
+        {% for comment in tred.comments.all %}
+        <!--Comments Section-->
+        <div class="comments-container">
+            <div class="body">
+                <div class="authors">
+                    <div class="username"><a href="">{{comment.author.name|title}}</a></div>
+                    <div>Role</div>
+                    <img src="{{comment.author.image.url}}" alt="">
+                    <div>Treds: <u>{{comment.author.num_treds}}</u></div>
+                    <div>Rating: <u>{{comment.author.rating}}</u></div>
+                </div>
+                <div class="content">
+                    {{comment.content}}
+                    <div class="comment">
+                        <button class="comment-button" onclick="showReply()">Reply</button>
+                    </div>
+                </div>
+            </div>
+            {% for reply in comment.replies.all %}
+                <div class="body" style="margin-left: 1%">
+                    <div class="authors">
+                        <div class="username"><a href="">{{reply.author.name|title}}</a></div>
+                        <div>Role</div>
+                        <img src="{{reply.author.image.url}}" alt="">
+                        <div>Treds: <u>{{reply.author.num_treds}}</u></div>
+                        <div>Rating: <u>{{reply.author.rating}}</u></div>
+                    </div>
+                    <div class="content">
+                        {{reply.content|safe}}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+                <!--Reply Area-->
+                <div class="comment-area hide" id="reply-area">
+                    <textarea class="comment-background" name="reply" id="" placeholder="reply here ... "></textarea>
+                    <input type="submit" value="submit">
+                </div>
+        {% endfor %}
+{% endblock content %}

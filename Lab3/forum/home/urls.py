@@ -1,8 +1,11 @@
 from django.urls import path
-from . import views
+from .views import home, topic, tred, signin, signout, signup
 
 urlpatterns = [
-    path('', views.home, name='home'),
-    path('detail/<slug>', views.detail, name='detail'),
-    path('treds/<slug>', views.treds, name='treds')
+    path('', home, name='home'),
+    path('topic/<slug>', topic, name='topic'),
+    path('treds/<slug>', tred, name='tred'),
+    path('signin', signin, name='signin'),
+    path('signup', signup, name='signup'),
+    path('signout', signout, name='signout')
 ]

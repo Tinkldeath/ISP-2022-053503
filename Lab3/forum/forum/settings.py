@@ -15,9 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-STATIC_URL = '/static/'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'home/static'),)
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -25,7 +22,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-u9-z(=aght-jqm47*t9!_*)j2363wqa@vv74!wqsce_z$#+r!!'
+SECRET_KEY = 'django-insecure-1lad0#())bjxj#aeciwbca%^i$gxtdn52*b7m1qy*mf&2cx*%2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -43,9 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home',
-    'tinymce',
-    'hitcount',
-    'taggit'
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [
@@ -124,6 +119,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
+STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

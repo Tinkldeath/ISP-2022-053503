@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+            <div class="subforum">
+                <div class="subforum-title">
+                    <div>
+                        <h1>Topics</h1>
+                    </div>
+                    <button class="add-button">Add topic</button>
+                </div>
+                {% for topic in topics %}
+                <div class="subforum-row">
+                    <div class="subforum-icon subforum-column center">
+                        {% if topic.image.url %}
+                        <img src="{{topic.image.url}}">
+                        {% else %}
+                        <i class="fa fa-car center"></i>
+                        {% endif %}
+                    </div>
+                    <div class="subforum-description subforum-column">
+                        <h4><a href="{{topic.get_url}}">{{topic.title|title}}</a></h4>
+                        <p>{{topic.description}}</p>
+                    </div>
+                    <div class="subforum-stats subforum-column center">
+                        <span>{{topic.treds}} Treds</span>
+                    </div>
+                    <div class="subforum-info subforum-column">
+                        <b><a href="">{{topic.last_tred.title|title}}</a></b> by <a href="">{{topic.last_tred.author|title}}</a>
+                        <br>on <small>{{topic.last_tred.date|date}}</small>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+    </div>
+{% endblock content %}

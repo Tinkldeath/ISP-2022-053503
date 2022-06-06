@@ -1,0 +1,13 @@
+{% extends 'inputbase.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div  style="">
+        <h1 style="text-align:center; margin-block:50px; color:#FFFFFF; font-size:30px; font-weight:bold"> Sign Up: </h1>
+            <form method="post" style="padding-top:1%; padding-left: 43.5%">
+                {% csrf_token %}
+                {{form|crispy}}
+                <input type="Submit" value="SignUp" style="margin-block:50px; margin-left: 4%">
+            </form>
+        <a href = "{% url 'signin' %}" style="padding-left: 45.5%">Sign In Here</a>
+    </div>
+{% endblock content %}
