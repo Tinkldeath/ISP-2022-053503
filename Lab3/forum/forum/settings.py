@@ -80,6 +80,7 @@ WSGI_APPLICATION = 'forum.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
+    # for docker-compose postgres
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'postgres',
@@ -87,6 +88,7 @@ DATABASES = {
         'HOST': 'db',
         'PORT': 5436,
     }
+    # for local postgres
     # 'default': {
     #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
     #     'NAME': 'testdb',
