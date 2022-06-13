@@ -7,15 +7,11 @@
                     <span><a href="{% url 'home' %}">Back to forum</a>
                 </div>
                 <h1 style="font-weight:bold; font-size:30px;"> Author's profile: </h1>
-                <div class="body">
+                <div class="body" style="border-radius: 15px">
                     <div class="authors">
                             <div class="username"><a href="">{{author.name|title}}</a></div>
                             <div>{{author.role}}</div>
-                            {% if author.image %}
-                            <img src="{{author.image.url}}" alt="">
-                            {% else %}
                             <img src="{% static 'user-default.png' %}">
-                            {% endif %}
                             <div>Treds: <u>{{author.num_treds}}</u></div>
                             <div>Rating: <u>{{author.rating}}</u></div>
                     </div>
@@ -24,32 +20,45 @@
                             {{author.bio}}
                     </div>
                 </div>
-        </div>
-        <div class="container">
                 {% if is_user %}
-                <h1> Change profile data: </h1>
-                        <form method="post" enctype="multipart/form-data" action="{% url 'home' %}">
-                              {% csrf_token %}
-                              {{form|crispy}}
-                                <input type="Submit" value="Change" name="change-profile">
-                        </form>
+                <div class="body" style="border-radius: 15px; margin-top: 15px;">
+                        <h1> Change profile data: </h1>
+                                <form method="post" style="margin:10px" enctype="multipart/form-data" action="{% url 'home' %}">
+                                {% csrf_token %}
+                                {{form|crispy}}
+                                        <input type="Submit" value="Change" name="change-profile">
+                                </form>
+                </div>
                 {% endif %}
         </div>
-        <div class="container">
-            <h1> Treds: </h1>
-            {% for tred in author.get_treds %}
-            <div class="table-row">
-<!--                <div class="status"><i class="fa fa-fire"></i></div>-->
-                <div class="subjects">
-                    <a href="{{tred.get_url}}">{{tred.title|title}}</a>
-                    <br>
-                    <span>Started by <b><a href="">{{tred.author.name|title}}</a></b> .</span>
+        <div class="container" style="margin-top: 0; padding-top: 0">
+                <div class="subforum">
+                        <div class="subforum-title">
+                                <div>
+                                <h1>Treds</h1>
+                                </div>
+                        </div>
+                        {% for tred in author.get_treds %}
+                        <div class="subforum-row">
+                                <div class="subforum-icon subforum-column center">
+                                <div class="status"><i class="fa fa-fire"></i></div>
+                                </div>
+                                <div class="subforum-description subforum-column">
+                                <h4><a href="{{tred.get_url}}">{{tred.title|title}}</a></h4>
+                                <p>{{tred.description}}</p>
+                                </div>
+                                <div class="subforum-stats subforum-column center">
+                                <span>{{tred.num_comments}} Comments</span>
+                                </div>
+                                <div class="subforum-info subforum-column">
+                                {% if tred.last_comment %}
+                                        <b>Last comment:</b>
+                                        <b></b> by <a href="{{tred.last_comment.author.get_url}}">{{tred.last_comment.author.name|title}}</a>
+                                        <br>on <small>{{tred.last_comment.date|date}}</small>
+                                {% endif %}
+                                </div>
+                        </div>
+                        {% endfor %}
                 </div>
-                <div class="last-reply">
-                    {{tred.last_comment.date|date}}
-                    <br>By <b><a href="">{{tred.last_comment.author.name|title}}</a></b>
-                </div>
-            </div>
-            {% endfor %}
         </div>
 {% endblock content %}

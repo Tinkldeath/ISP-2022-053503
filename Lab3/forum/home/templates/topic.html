@@ -9,15 +9,15 @@
             </div>
         </div>
         <!--Display posts table-->
-        <div class="posts-table">
+        {% comment %} <div class="posts-table">
             <div class="table-head">
-<!--                <div class="status">Status</div>-->
-                <div class="subjects">Subjects</div>
+                <div class="status">Tred</div>
+                <div class="subjects">Subject</div>
                 <div class="last-reply">Last Comment</div>
             </div>
             {% for tred in treds %}
             <div class="table-row">
-<!--                <div class="status"><i class="fa fa-fire"></i></div>-->
+              <div class="status"><i class="fa fa-fire"></i></div>
                 <div class="subjects">
                     <a href="{{tred.get_url}}">{{tred.title|title}}</a>
                     <br>
@@ -29,6 +29,34 @@
                 </div>
             </div>
             {% endfor %}
-        </div>
+        </div> {% endcomment %}
+            <div class="subforum">
+                <div class="subforum-title">
+                    <div>
+                        <h1>Treds</h1>
+                    </div>
+                </div>
+                {% for tred in treds %}
+                <div class="subforum-row">
+                    <div class="subforum-icon subforum-column center">
+                        <div class="status"><i class="fa fa-fire"></i></div>
+                    </div>
+                    <div class="subforum-description subforum-column">
+                        <h4><a href="{{tred.get_url}}">{{tred.title|title}}</a></h4>
+                        <p>{{tred.description}}</p>
+                    </div>
+                    <div class="subforum-stats subforum-column center">
+                        <span>{{tred.num_comments}} Comments</span>
+                    </div>
+                    <div class="subforum-info subforum-column">
+                        {% if tred.last_comment %}
+                            <b>Last comment:</b>
+                            <b></b> by <a href="{{tred.last_comment.author.get_url}}">{{tred.last_comment.author.name|title}}</a>
+                            <br>on <small>{{tred.last_comment.date|date}}</small>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
     </div>
 {% endblock content %}

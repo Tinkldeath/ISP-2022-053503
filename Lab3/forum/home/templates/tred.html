@@ -19,17 +19,12 @@
                 <div class="authors">
                     <div class="username"><a href="">{{tred.author.name|title}}</a></div>
                     <div>{{tred.author.role}}</div>
-                    {% if tred.author.image %}
-                    <img src="{{tred.author.image.url}}" alt="">
-                    {% else %}
                     <img src="{% static 'user-default.png' %}">
-                    {% endif %}
                     <div>Treds: <u>{{tred.author.num_treds}}</u></div>
                     <div>Rating: <u>{{tred.author.rating}}</u></div>
                 </div>
                 <div class="content">
                     {{tred.content}}
-                    {% if tred.image %} <img src="{{tred.image.url}}" alt=""> {% endif %}
                     <div class="comment">
                         <button class="comment-button" onclick="showComment()">Comment</button>
                     </div>
@@ -53,11 +48,7 @@
                 <div class="authors">
                     <div class="username"><a href="{{comment.author.get_url}}">{{comment.author.name|title}}</a></div>
                     <div>{{comment.author.role}}</div>
-                    {% if comment.author.image %}
-                    <img src="{{comment.author.image.url}}" alt="">
-                    {% else %}
                     <img src="{% static 'user-default.png' %}">
-                    {% endif %}
                     <div>Treds: <u>{{comment.author.num_treds}}</u></div>
                     <div>Rating: <u>{{comment.author.rating}}</u></div>
                 </div>
@@ -73,11 +64,7 @@
                     <div class="authors">
                         <div class="username"><a href="{{reply.author.get_url}}">{{reply.author.name|title}}</a></div>
                         <div>{{reply.author.role}}</div>
-                        {% if reply.author.image %}
-                        <img src="{{tred.author.image.url}}" alt="">
-                        {% else %}
                         <img src="{% static 'user-default.png' %}">
-                        {% endif %}
                         <div>Treds: <u>{{reply.author.num_treds}}</u></div>
                         <div>Rating: <u>{{reply.author.rating}}</u></div>
                     </div>

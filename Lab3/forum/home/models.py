@@ -1,7 +1,6 @@
 import uuid
 from django.db import models
 from django.shortcuts import reverse
-from django_resized import ResizedImageField
 from django.contrib.auth import get_user_model
 from django.utils.text import slugify
 
@@ -10,9 +9,8 @@ User = get_user_model()
 
 class Topic(models.Model):
     title = models.CharField(max_length=40)
-    slug = models.SlugField(max_length=200, default=uuid.uuid4())
+    slug = models.SlugField(max_length=200, default=uuid.uuid4)
     description = models.TextField(blank=True)
-    image = ResizedImageField(size=[120, 65], quality=100, upload_to='topics', default=None, null=True, blank=True)
     approved = models.BooleanField(default=False)
 
     def __str__(self):
@@ -41,10 +39,9 @@ class Author(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=40)
     role = models.CharField(max_length=40, default='Member')
-    slug = models.SlugField(max_length=200, default=uuid.uuid4())
+    slug = models.SlugField(max_length=200, default=uuid.uuid4)
     bio = models.TextField(max_length=1000, default='Empty')
     rating = models.IntegerField(default=0)
-    image = ResizedImageField(size=[50, 80], quality=100, upload_to='authors', default=None, null=True, blank=True)
 
     def num_treds(self):
         return Tred.objects.filter(approved=True, author=self).count()
@@ -90,14 +87,13 @@ class Comment(models.Model):
 
 class Tred(models.Model):
     title = models.CharField(max_length=200)
-    slug = models.SlugField(max_length=200, default=uuid.uuid4())
+    slug = models.SlugField(max_length=200, default=uuid.uuid4)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     content = models.TextField(max_length=10000)
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE, null=True)
     date = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=False)
     comments = models.ManyToManyField(Comment, blank=True)
-    image = ResizedImageField(size=[1280, 720], quality=100, upload_to='images', default=None, null=True, blank=True)
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -115,3 +111,8 @@ class Tred(models.Model):
     @property
     def last_comment(self):
         return self.comments.latest("date")
+
+    @property
+    def num_comments(self):
+        return self.comments.count()
+    

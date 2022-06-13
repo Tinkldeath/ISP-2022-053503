@@ -12,11 +12,8 @@
                 {% for topic in topics %}
                 <div class="subforum-row">
                     <div class="subforum-icon subforum-column center">
-                        {% if topic.image %}
-                        <img src="{{topic.image.url}}">
-                        {% else %}
-                        <img src="{% static 'topic-default.png' %}" width="120" height="65">
-                        {% endif %}
+                        <i class="fa fa-users" aria-hidden="true"></i>
+                        {% comment %} <img src="{% static 'topic-default.png' %}" width="120" height="65"> {% endcomment %}
                     </div>
                     <div class="subforum-description subforum-column">
                         <h4><a href="{{topic.get_url}}">{{topic.title|title}}</a></h4>

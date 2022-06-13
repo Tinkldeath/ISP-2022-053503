@@ -17,7 +17,7 @@ def home(request):
                 'author': author
             })
         except:
-            return redirect('update')
+            print('Author is not registered')
     topics = Topic.objects.filter(approved=True)
     if topics.count() == 0:
         topics = []
@@ -144,17 +144,19 @@ def update(request):
     return render(request, 'update.html', {'form': form})
 
 
-@login_required
 def add_topic(request):
     user = request.user
+    if user.is_anonymous:
+        return redirect('signin')
     context = {}
-    try:
-        author = Author.objects.get(user=user)
-        context.update({
-            'author': author
-        })
-    except:
-        return redirect('update')
+    if user.is_authenticated:
+        try:
+            author = Author.objects.get(user=user)
+            context.update({
+                'author': author
+            })
+        except:
+            return redirect('update')
     form = TopicForm(request.POST, request.FILES)
     context.update({
         'form': form
@@ -174,17 +176,19 @@ def add_topic(request):
     return render(request, 'addtopic.html', context)
 
 
-@login_required
 def add_tred(request):
     user = request.user
+    if user.is_anonymous:
+        return redirect('signin')
     context = {}
-    try:
-        author = Author.objects.get(user=user)
-        context.update({
-            'author': author
-        })
-    except:
-        return redirect('update')
+    if user.is_authenticated:
+        try:
+            author = Author.objects.get(user=user)
+            context.update({
+                'author': author
+            })
+        except:
+            return redirect('update')
     form = TredForm(request.POST, request.FILES)
     context.update({
         'form': form
@@ -208,27 +212,24 @@ def add_tred(request):
 def search_view(request):
     return render(request, 'search.html')
 
-@login_required
+
 def profile(request, slug):
     user = request.user
+    if user.is_anonymous:
+        return redirect('signin')
     context = {}
-    try:
-        author = Author.objects.get(user=user)
-        context.update({
-            'author': author
-        })
-    except:
-        return redirect('update')
-    form = ChangeAuthorForm(request.POST, request.FILES)
-    context.update({
-        'form': form
-    })
     user_as_author = Author.objects.get(user=user)
     author = Author.objects.get(slug=slug)
     if not author:
         redirect('update')
-    is_user = user_as_author.slug == slug
+    is_user = author.slug == user_as_author.slug
+    if is_user:
+            form = ChangeAuthorForm(request.POST, request.FILES)
+            context.update({
+                'form': form
+            })
     context.update({
+        'author': author,
         'is_user': is_user
     })
     if request.method == 'POST':
@@ -240,7 +241,3 @@ def profile(request, slug):
                 user_as_author.save()
                 redirect('home')
     return render(request, 'profile.html', context)
-
-
-def handler404(request, *args, **argv):
-    return redirect('home')

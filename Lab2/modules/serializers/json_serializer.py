@@ -23,7 +23,9 @@ class JsonSerializer(Serializer):
             file = open(fp, "r")
             s = file.read()
             file.close()
-            return self.loads(s)
+            if s != "":
+                return self.loads(s)
+            return None
         else:
             print(f'File {fp} not found')
 

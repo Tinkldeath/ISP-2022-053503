@@ -1,5 +1,8 @@
 import math
+import os
 from modules.factory import SerializerFactory
+
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 c = 42
 
@@ -10,7 +13,7 @@ def f(x):
 
 
 serializer = SerializerFactory.create_serializer("json")
-config = serializer.load("./config/config.json")
+config = serializer.load(f'{ROOT_DIR}/config/config.json')
 data_path = ""
 form = ""
 
@@ -28,3 +31,9 @@ if config is not None:
         foo = serializer.load(f'{data_path}/data.{form.lower()}')
         print(f'Function(2): {f(2)}')
         print(f'Serialized_function(2): {f(2)}')
+else:
+    serializer = SerializerFactory.create_serializer("json")
+    serializer.dump(f, f'{ROOT_DIR}/data/data.json')
+    foo = serializer.load(f'{ROOT_DIR}/data/data.json')
+    print(f'Function(2): {f(2)}')
+    print(f'Serialized_function(2): {foo(2)}')
