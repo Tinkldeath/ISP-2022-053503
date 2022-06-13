@@ -82,15 +82,20 @@ WSGI_APPLICATION = 'forum.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'testdb',
+        'NAME': 'postgres',
         'USER': 'postgres',
-        'PASSWORD': '1234',
-        'HOST': '0.0.0.0',
-        'PORT': '5432',
+        'HOST': 'db',
+        'PORT': 5436,
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': 'testdb',
+    #     'USER': 'postgres',
+    #     'PASSWORD': '1234',
+    #     'HOST': '0.0.0.0',
+    #     'PORT': '5432',
+    # }
 }
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators

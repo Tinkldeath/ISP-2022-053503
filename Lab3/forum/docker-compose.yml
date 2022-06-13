@@ -1,0 +1,26 @@
+version: '3'
+services:
+  db:
+     image: 'postgres'
+     ports:
+       - '5436'
+     networks:
+      some_network:
+  core:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python3 manage.py runserver 0.0.0.0:8000
+    ports:
+      - '8000:8000'
+    volumes:
+      - .:/code
+    depends_on:
+      - db
+    links:
+      - db:db
+    networks:
+      some_network:
+networks:
+  some_network:
+    driver: bridge
