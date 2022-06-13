@@ -23,9 +23,11 @@
                         <span>{{topic.treds}} Treds</span>
                     </div>
                     <div class="subforum-info subforum-column">
-                        <b>Last tred:</b>
-                        <b><a href="{{topic.last_tred.get_url}}">{{topic.last_tred.title|title}}</a></b> by <a href="{{topic.last_tred.author.get_url}}">{{topic.last_tred.author|title}}</a>
-                        <br>on <small>{{topic.last_tred.date|date}}</small>
+                        {% if topic.last_tred %}
+                            <b>Last tred:</b>
+                            <b><a href="{{topic.last_tred.get_url}}">{{topic.last_tred.title|title}}</a></b> by <a href="{{topic.last_tred.author.get_url}}">{{topic.last_tred.author|title}}</a>
+                            <br>on <small>{{topic.last_tred.date|date}}</small>
+                        {% endif %}
                     </div>
                 </div>
                 {% endfor %}

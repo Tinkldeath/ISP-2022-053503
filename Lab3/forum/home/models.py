@@ -3,6 +3,7 @@ from django.db import models
 from django.shortcuts import reverse
 from django.contrib.auth import get_user_model
 from django.utils.text import slugify
+from django.urls import reverse_lazy
 
 User = get_user_model()
 
@@ -30,7 +31,7 @@ class Topic(models.Model):
         return Tred.objects.filter(topic=self, approved=True).latest('date')
 
     def get_url(self):
-        return reverse('topic', kwargs={
+        return reverse_lazy('topic', kwargs={
             'slug': self.slug
         })
 
@@ -55,7 +56,7 @@ class Author(models.Model):
         super(Author, self).save(*args, **kwargs)
 
     def get_url(self):
-        return reverse('profile', kwargs={
+        return reverse_lazy('profile', kwargs={
             "slug": self.slug
         })
 
@@ -104,7 +105,7 @@ class Tred(models.Model):
         return self.title
 
     def get_url(self):
-        return reverse('tred', kwargs={
+        return reverse_lazy('tred', kwargs={
             "slug": self.slug
         })
 
