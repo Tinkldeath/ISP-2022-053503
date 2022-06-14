@@ -1,5 +1,5 @@
+#pragma: no cover
 from .models import Tred
-
 
 def search(request):
     treds = Tred.objects.all()

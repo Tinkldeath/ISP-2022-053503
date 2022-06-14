@@ -1,7 +1,7 @@
 from django import forms
 from .models import Author, Topic, Tred
 
-
+ # pragma: no cover
 class UpdateForm(forms.ModelForm):
     class Meta:
         model = Author

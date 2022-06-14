@@ -81,22 +81,22 @@ WSGI_APPLICATION = 'forum.wsgi.application'
 
 DATABASES = {
     # for docker-compose postgres
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'HOST': 'db',
-        'PORT': 5436,
-    }
-    # for local postgres
     # 'default': {
     #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    #     'NAME': 'testdb',
+    #     'NAME': 'postgres',
     #     'USER': 'postgres',
-    #     'PASSWORD': '1234',
-    #     'HOST': '0.0.0.0',
-    #     'PORT': '5432',
+    #     'HOST': 'db',
+    #     'PORT': 5436,
     # }
+    # for local postgres
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'testdb',
+        'USER': 'postgres',
+        'PASSWORD': '1234',
+        'HOST': '0.0.0.0',
+        'PORT': '5432',
+    }
 }
 
 # Password validation
