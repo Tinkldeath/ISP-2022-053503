@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
+import logging
 import os
 import django_heroku
 from pathlib import Path
@@ -32,6 +33,21 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+
+LOGGING = {
+    'handlers': {
+        'file': {
+            'class': 'logging.FileHandler',
+            'filename': 'general.log',
+        },
+    },
+    'loggers': {
+        '': {
+            'level': 'DEBUG',
+            'handlers': ['file'],
+        },
+    }
+}
 
 INSTALLED_APPS = [
     'django.contrib.admin',
