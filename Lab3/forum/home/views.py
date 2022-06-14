@@ -4,9 +4,10 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from asgiref.sync import sync_to_async
 from .forms import UpdateForm, TopicForm, TredForm, ChangeAuthorForm
 
-
+@sync_to_async
 def home(request):
     user = request.user
     context = {}
@@ -27,6 +28,7 @@ def home(request):
     return render(request, 'home.html', context)
 
 
+@sync_to_async
 def topic(requset, slug):
     context = {}
     user = requset.user
@@ -46,7 +48,7 @@ def topic(requset, slug):
     })
     return render(requset, 'topic.html', context)
 
-
+@sync_to_async
 def tred(request, slug):
     tred = get_object_or_404(Tred, slug=slug)
     user = request.user
@@ -74,7 +76,7 @@ def tred(request, slug):
     })
     return render(request, 'tred.html', context)
 
-
+@sync_to_async
 def signup(request):
     if request.user.is_authenticated:
         return redirect('home')
@@ -97,7 +99,7 @@ def signup(request):
         form = UserCreationForm()
         return render(request, 'signup.html', {'form': form})
 
-
+@sync_to_async
 def signin(request):
     print(request.user)
     print(request.method)
@@ -212,7 +214,7 @@ def add_tred(request):
 def search_view(request):
     return render(request, 'search.html')
 
-
+@sync_to_async
 def profile(request, slug):
     user = request.user
     if user.is_anonymous:
